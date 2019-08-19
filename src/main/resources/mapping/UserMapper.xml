@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chy.mybatisplusdemo.mapper.UserMapper">
+
+
+    <resultMap type="com.chy.mybatisplusdemo.dto.UserDO" id="UserDOMap">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="INTEGER" />
+        <result column="sex" property="sex" jdbcType="INTEGER" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="phonenumber" property="phonenumber" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <!--parameterType表示入参-->
+    <select id="selectUserByID" parameterType="INTEGER" resultMap="UserDOMap">
+        select *
+        from user
+        where 1=1
+            and id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectUserByTelphone" parameterType="java.lang.String" resultMap="UserDOMap">
+        select *
+        from user
+        where 1=1
+            and phonenumber = #{phonenumber,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
